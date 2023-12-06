@@ -9,21 +9,43 @@
 /* Begin PBXBuildFile section */
 		8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53632B20468800FE5493 /* AppDelegate.swift */; };
 		8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53652B20468800FE5493 /* SceneDelegate.swift */; };
-		8FBF53682B20468800FE5493 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53672B20468800FE5493 /* ViewController.swift */; };
+		8FBF53682B20468800FE5493 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53672B20468800FE5493 /* ConversationsViewController.swift */; };
 		8FBF536B2B20468800FE5493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FBF53692B20468800FE5493 /* Main.storyboard */; };
 		8FBF536D2B20468900FE5493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FBF536C2B20468900FE5493 /* Assets.xcassets */; };
 		8FBF53702B20468900FE5493 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FBF536E2B20468900FE5493 /* LaunchScreen.storyboard */; };
+		8FBF537E2B2047D800FE5493 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF537D2B2047D800FE5493 /* LoginViewController.swift */; };
+		8FBF53802B2047E500FE5493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF537F2B2047E500FE5493 /* RegisterViewController.swift */; };
+		8FBF53822B2047F700FE5493 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53812B2047F700FE5493 /* ProfileViewController.swift */; };
+		8FBF53842B20481100FE5493 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53832B20481100FE5493 /* PhotoViewerViewController.swift */; };
+		8FBF53862B20481C00FE5493 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53852B20481C00FE5493 /* VideoPlayerViewController.swift */; };
+		8FBF53882B20483B00FE5493 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53872B20483B00FE5493 /* NewConversationViewController.swift */; };
+		8FBF538B2B20492400FE5493 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF538A2B20492400FE5493 /* Extensions.swift */; };
+		8FBF538D2B2049E300FE5493 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FBF538C2B2049E200FE5493 /* GoogleService-Info.plist */; };
+		8FBF53902B204A2600FE5493 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF538F2B204A2600FE5493 /* FirebaseAnalytics */; };
+		8FBF53922B204A2600FE5493 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF53912B204A2600FE5493 /* FirebaseAnalyticsOnDeviceConversion */; };
+		8FBF53942B204A2600FE5493 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF53932B204A2600FE5493 /* FirebaseAnalyticsSwift */; };
+		8FBF53962B204A2600FE5493 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF53952B204A2600FE5493 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		8FBF53982B204A2600FE5493 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF53972B204A2600FE5493 /* FirebaseAppCheck */; };
+		8FBF539B2B20573700FE5493 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBF539A2B20573700FE5493 /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8FBF53602B20468800FE5493 /* MessengerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBF53632B20468800FE5493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FBF53652B20468800FE5493 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8FBF53672B20468800FE5493 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8FBF53672B20468800FE5493 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		8FBF536A2B20468800FE5493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FBF536C2B20468900FE5493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FBF536F2B20468900FE5493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FBF53712B20468900FE5493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FBF537D2B2047D800FE5493 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8FBF537F2B2047E500FE5493 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8FBF53812B2047F700FE5493 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8FBF53832B20481100FE5493 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
+		8FBF53852B20481C00FE5493 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		8FBF53872B20483B00FE5493 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
+		8FBF538A2B20492400FE5493 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8FBF538C2B2049E200FE5493 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +53,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FBF53942B204A2600FE5493 /* FirebaseAnalyticsSwift in Frameworks */,
+				8FBF539B2B20573700FE5493 /* FirebaseAuth in Frameworks */,
+				8FBF53902B204A2600FE5493 /* FirebaseAnalytics in Frameworks */,
+				8FBF53922B204A2600FE5493 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				8FBF53982B204A2600FE5493 /* FirebaseAppCheck in Frameworks */,
+				8FBF53962B204A2600FE5493 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +70,7 @@
 			children = (
 				8FBF53622B20468800FE5493 /* MessengerApp */,
 				8FBF53612B20468800FE5493 /* Products */,
+				8FBF53992B20573700FE5493 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +85,86 @@
 		8FBF53622B20468800FE5493 /* MessengerApp */ = {
 			isa = PBXGroup;
 			children = (
-				8FBF53632B20468800FE5493 /* AppDelegate.swift */,
-				8FBF53652B20468800FE5493 /* SceneDelegate.swift */,
-				8FBF53672B20468800FE5493 /* ViewController.swift */,
-				8FBF53692B20468800FE5493 /* Main.storyboard */,
-				8FBF536C2B20468900FE5493 /* Assets.xcassets */,
-				8FBF536E2B20468900FE5493 /* LaunchScreen.storyboard */,
+				8FBF53772B20469700FE5493 /* Resources */,
+				8FBF53782B2046A000FE5493 /* Models */,
+				8FBF53792B2046A700FE5493 /* Views */,
+				8FBF537B2B2046C200FE5493 /* Controllers */,
+				8FBF537A2B2046B400FE5493 /* ViewModels */,
 				8FBF53712B20468900FE5493 /* Info.plist */,
+				8FBF538C2B2049E200FE5493 /* GoogleService-Info.plist */,
 			);
 			path = MessengerApp;
+			sourceTree = "<group>";
+		};
+		8FBF53772B20469700FE5493 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF53652B20468800FE5493 /* SceneDelegate.swift */,
+				8FBF53632B20468800FE5493 /* AppDelegate.swift */,
+				8FBF538A2B20492400FE5493 /* Extensions.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8FBF53782B2046A000FE5493 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8FBF53792B2046A700FE5493 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF536C2B20468900FE5493 /* Assets.xcassets */,
+				8FBF537C2B20470200FE5493 /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8FBF537A2B2046B400FE5493 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8FBF537B2B2046C200FE5493 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF53892B20483E00FE5493 /* Login */,
+				8FBF53672B20468800FE5493 /* ConversationsViewController.swift */,
+				8FBF53812B2047F700FE5493 /* ProfileViewController.swift */,
+				8FBF53832B20481100FE5493 /* PhotoViewerViewController.swift */,
+				8FBF53852B20481C00FE5493 /* VideoPlayerViewController.swift */,
+				8FBF53872B20483B00FE5493 /* NewConversationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8FBF537C2B20470200FE5493 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF536E2B20468900FE5493 /* LaunchScreen.storyboard */,
+				8FBF53692B20468800FE5493 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8FBF53892B20483E00FE5493 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF537D2B2047D800FE5493 /* LoginViewController.swift */,
+				8FBF537F2B2047E500FE5493 /* RegisterViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8FBF53992B20573700FE5493 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +183,14 @@
 			dependencies = (
 			);
 			name = MessengerApp;
+			packageProductDependencies = (
+				8FBF538F2B204A2600FE5493 /* FirebaseAnalytics */,
+				8FBF53912B204A2600FE5493 /* FirebaseAnalyticsOnDeviceConversion */,
+				8FBF53932B204A2600FE5493 /* FirebaseAnalyticsSwift */,
+				8FBF53952B204A2600FE5493 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				8FBF53972B204A2600FE5493 /* FirebaseAppCheck */,
+				8FBF539A2B20573700FE5493 /* FirebaseAuth */,
+			);
 			productName = MessengerApp;
 			productReference = 8FBF53602B20468800FE5493 /* MessengerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +219,9 @@
 				Base,
 			);
 			mainGroup = 8FBF53572B20468800FE5493;
+			packageReferences = (
+				8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8FBF53612B20468800FE5493 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +239,7 @@
 				8FBF53702B20468900FE5493 /* LaunchScreen.storyboard in Resources */,
 				8FBF536D2B20468900FE5493 /* Assets.xcassets in Resources */,
 				8FBF536B2B20468800FE5493 /* Main.storyboard in Resources */,
+				8FBF538D2B2049E300FE5493 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FBF53682B20468800FE5493 /* ViewController.swift in Sources */,
+				8FBF53822B2047F700FE5493 /* ProfileViewController.swift in Sources */,
+				8FBF537E2B2047D800FE5493 /* LoginViewController.swift in Sources */,
+				8FBF53802B2047E500FE5493 /* RegisterViewController.swift in Sources */,
+				8FBF53842B20481100FE5493 /* PhotoViewerViewController.swift in Sources */,
+				8FBF53682B20468800FE5493 /* ConversationsViewController.swift in Sources */,
+				8FBF538B2B20492400FE5493 /* Extensions.swift in Sources */,
+				8FBF53862B20481C00FE5493 /* VideoPlayerViewController.swift in Sources */,
+				8FBF53882B20483B00FE5493 /* NewConversationViewController.swift in Sources */,
 				8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */,
 				8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */,
 			);
@@ -298,13 +417,14 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Smruthi-Pobbathi.MessengerApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -326,13 +446,14 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Smruthi-Pobbathi.MessengerApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -363,6 +484,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.19.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8FBF538F2B204A2600FE5493 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8FBF53912B204A2600FE5493 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		8FBF53932B204A2600FE5493 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		8FBF53952B204A2600FE5493 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		8FBF53972B204A2600FE5493 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		8FBF539A2B20573700FE5493 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBF538E2B204A2600FE5493 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8FBF53582B20468800FE5493 /* Project object */;
 }
