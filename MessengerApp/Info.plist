@@ -2,6 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1422461608338275</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.964633969151-24adluem5cehgcikl56drsk2oe12sfft</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1422461608338275</string>
+	<key>FacebookClientToken</key>
+	<string>7c39fc9ed830a4866482ec9e3c2be365</string>
+	<key>FacebookDisplayName</key>
+	<string>My Messenger</string>
+	<key>GIDClientID</key>
+	<string>964633969151-24adluem5cehgcikl56drsk2oe12sfft.apps.googleusercontent.com</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,22 +46,5 @@
 			</array>
 		</dict>
 	</dict>
-    
-    
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-          <key>CFBundleURLSchemes</key>
-          <array>
-              <string>fb1422461608338275</string>
-          </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>1422461608338275</string>
-    <key>FacebookClientToken</key>
-    <string>7c39fc9ed830a4866482ec9e3c2be365</string>
-    <key>FacebookDisplayName</key>
-    <string>My Messenger</string>
 </dict>
 </plist>
