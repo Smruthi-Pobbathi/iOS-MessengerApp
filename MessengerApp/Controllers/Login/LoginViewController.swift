@@ -8,8 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FacebookLogin
-//@UIApplicationDelegateAdaptor(AppDelegate.self)
-//var appDelegate
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -75,11 +74,35 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let googleLoginButton = GIDSignInButton()
+    
+    private var loginObserver: NSObjectProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
+        // Since the google signin integration is in AppDelegate. we want to
+        // handle dismissing the vc and show Conversationvc. So we use notifications
+        // fire a notification from appdelegate and add a listner in Loginvc
         
+        loginObserver = NotificationCenter.default.addObserver(
+            forName: .didLoginNotification,
+            object: nil,
+            queue: .main,
+            using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.navigationController?.dismiss(animated: true)
+        })
+        
+        configureUI()
+    }
+    
+    deinit {
+        if let observer = loginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -100,6 +123,7 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self,
                               action: #selector(loginButtonTapped),
                               for: .touchUpInside)
+        googleLoginButton.addTarget(self, action: #selector(googleLoginButtonTapped), for: .touchUpInside)
         emailField.delegate = self
         passwordField.delegate = self
         fbLoginButton.delegate = self
@@ -111,6 +135,7 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
         scrollView.addSubview(fbLoginButton)
+        scrollView.addSubview(googleLoginButton)
     }
     
     func configureLayouts() {
@@ -141,8 +166,11 @@ class LoginViewController: UIViewController {
                                   y: loginButton.bottom + 10,
                                   width: scrollView.width - 60,
                                   height: 52)
-        fbLoginButton.frame.origin.y = loginButton.bottom + 20
         
+        googleLoginButton.frame = CGRect(x: 30,
+                                  y: fbLoginButton.bottom + 10,
+                                  width: scrollView.width - 60,
+                                  height: 52)
     }
     
     @objc private func didTapRegister() {
@@ -188,10 +216,21 @@ class LoginViewController: UIViewController {
                                       style: .cancel))
         present(alert, animated: true)
     }
+    
+    @objc func googleLoginButtonTapped() {
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+          guard error == nil else { return }
+
+          
+        }
+        
+    }
 }
 
 
 extension LoginViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailField {
             passwordField.becomeFirstResponder()
@@ -214,8 +253,10 @@ extension LoginViewController: LoginButtonDelegate {
             return
         }
         
+        let params : [String: Any] = ["fields": "email, name"]
+        
         let facebookRequest = FacebookLogin.GraphRequest(graphPath: "me",
-                                                         parameters: ["fields" : ["email", "name"]],
+                                                         parameters: params,
                                                          tokenString: token,
                                                          version: nil,
                                                           httpMethod: .get)

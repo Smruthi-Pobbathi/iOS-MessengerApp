@@ -7,6 +7,9 @@
 
 import UIKit
 import FirebaseAuth
+import FacebookLogin
+import GoogleSignIn
+
 
 class ProfileViewController: UIViewController {
 
@@ -34,8 +37,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = data[indexPath.row]
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = .red
-        
-        
         return cell
     }
     
@@ -51,6 +52,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             guard let strongSelf = self else {
                 return
             }
+            
+            // log out facebook
+            FacebookLogin.LoginManager().logOut()
+            
+            // log out of google
+            GIDSignIn.sharedInstance.signOut()
             
             do {
                 try FirebaseAuth.Auth.auth().signOut()
