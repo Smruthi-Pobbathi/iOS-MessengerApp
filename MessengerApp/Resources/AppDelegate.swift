@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import FacebookCore
 import GoogleSignIn
+import FirebaseStorage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,11 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         //open google signin url
-        var handled: Bool = GIDSignIn.sharedInstance.handle(url)
+        let handled: Bool = GIDSignIn.sharedInstance.handle(url)
         if handled {
           return true
         }
         return false
+        
     }
     
     func configureGoogleSignIn() {
@@ -75,9 +77,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DatabaseManager.shared.userExists(with: email, completion: { exists in
                     if !exists {
                         // insert to database
-                        DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
-                                                                            lastName: lastName,
-                                                                            emailAddress: email))
+                        let chatUser = ChatAppUser(firstName: firstName,
+                                                   lastName: lastName,
+                                                   emailAddress: email)
+                        
+                        DatabaseManager.shared.insertUser(with: chatUser, completion: { success in
+                            
+                            if success {
+                                if ((userDetails.profile?.hasImage) != nil) {
+                                    guard let url = userDetails.profile?.imageURL(withDimension: 200) else {
+                                        return
+                                    }
+                                    
+                                    URLSession.shared.dataTask(with: url, completionHandler: { data, _, _ in
+                                        guard let data = data else {
+                                            return
+                                        }
+                                        
+                                        // upload image
+                                        let fileName = chatUser.profilePictureFileName
+                                        StorageManager.shared.uploadProfilePicture(with: data,
+                                                                                   fileName: fileName,
+                                                                                   completion: { result in
+                                            switch result {
+                                            case .success(let downloadUrl):
+                                                UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                                print(downloadUrl)
+                                            case.failure(let error):
+                                                print("Storage manager error: \(error)")
+                                            }
+                                        })
+                                    }).resume()
+                                }
+                            }
+                        })
                     }
                 })
                 
