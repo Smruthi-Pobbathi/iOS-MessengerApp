@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                       let lastName = user?.profile?.familyName
                 else { return }
                 
+                UserDefaults.standard.set(email, forKey: "email")
                 print("Did sign in with google: \(userDetails)")
                 
                 DatabaseManager.shared.userExists(with: email, completion: { exists in

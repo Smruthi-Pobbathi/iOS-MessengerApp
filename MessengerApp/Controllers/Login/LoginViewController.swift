@@ -193,6 +193,7 @@ class LoginViewController: UIViewController {
             return
         }
         spinner.show(in: view)
+        
         // Firebase Login
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
             
@@ -211,6 +212,8 @@ class LoginViewController: UIViewController {
             }
             
             let user = result.user
+            UserDefaults.standard.set(email, forKey: "email")
+            
             print("Logged in user: \(user)")
             strongSelf.navigationController?.dismiss(animated: true)
         })
@@ -288,6 +291,7 @@ extension LoginViewController: LoginButtonDelegate {
                 return
             }
             
+            UserDefaults.standard.set(email, forKey: "email")
 
             DatabaseManager.shared.userExists(with: email, completion: { exists in
                 if !exists {
