@@ -62,6 +62,8 @@ class ChatViewController: MessagesViewController {
         return formatter
     }()
     
+    private let conversationId: String?
+
     public let otherUserEmail: String
 
     public var isNewConversation = false
@@ -73,13 +75,17 @@ class ChatViewController: MessagesViewController {
             return nil
         }
         
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        
         return Sender(photoURL: "",
-               senderId:  email,
-               displayName: "Joe Smith")
+               senderId: safeEmail,
+               displayName: "Me")
     }
     
-    init(with email : String) {
+    
+    init(with email : String, id: String?) {
         self.otherUserEmail = email
+        self.conversationId = id
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -102,6 +108,34 @@ class ChatViewController: MessagesViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
+        if let conversationId = conversationId {
+            listenForMessages(id: conversationId, shouldScrollToBotton: true)
+        }
+    }
+    
+    private func listenForMessages(id: String, shouldScrollToBotton: Bool) {
+        DatabaseManager.shared.getAllMessagesForConversation(with: id, completion: { [weak self] result in
+            
+            switch result {
+            case .success(let messages):
+                print("success in getting messages \(messages)")
+                
+                guard !messages.isEmpty else {
+                    return
+                }
+                self?.messages = messages
+                
+                DispatchQueue.main.async {
+                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+                    if shouldScrollToBotton {
+                        self?.messagesCollectionView.scrollToLastItem()
+                    }
+                }
+                
+            case .failure(let error):
+                print("Failed to get messages: \(error)")
+            }
+        })
     }
 }
 
@@ -113,11 +147,9 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         }
         
         fatalError("Self Sender is nil, email should be cached")
-        return Sender(photoURL: "", senderId: "12", displayName: "")
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        print(messages[indexPath.section])
         return messages[indexPath.section]
     }
     
@@ -135,7 +167,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             return
         }
         
-        print("Sending \(text)")
+        print("Sending: \(text)")
+        
         // send message
         if isNewConversation {
             
@@ -144,7 +177,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                                   sentDate: Date(),
                                   kind: .text(text))
             // create convo in database
-            DatabaseManager.shared.createNewConversation(with: otherUserEmail, firstMessage: message, completion: { success in
+            DatabaseManager.shared.createNewConversation(with: otherUserEmail, name: self.title ?? "User", firstMessage: message, completion: { success in
                 
                 if success {
                     print("Message sent")
@@ -154,7 +187,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                 
             })
         } else {
-            // append to existing conversation
+            // append to existing conversation data
         }
     }
     
@@ -166,7 +199,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             return nil
         }
         
-        let safeCurrentEmail = DatabaseManager.stafeEmail(emailAddress: currentUserEmail)
+        let safeCurrentEmail = DatabaseManager.safeEmail(emailAddress: currentUserEmail)
         
         let newIdentifier = "\(otherUserEmail)_\(safeCurrentEmail)_\(dateString)"
         
