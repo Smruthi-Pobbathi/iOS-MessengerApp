@@ -73,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 else { return }
                 
                 UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                
                 print("Did sign in with google: \(userDetails)")
                 
                 DatabaseManager.shared.userExists(with: email, completion: { exists in
