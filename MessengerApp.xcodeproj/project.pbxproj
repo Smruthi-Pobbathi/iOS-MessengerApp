@@ -10,6 +10,7 @@
 		8F2CBB962B22FB3400098141 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2CBB952B22FB3400098141 /* FirebaseFirestore */; };
 		8F2CBB982B22FB3A00098141 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2CBB972B22FB3A00098141 /* FirebaseStorage */; };
 		8F2CBB9A2B22FCA600098141 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB992B22FCA600098141 /* StorageManager.swift */; };
+		8F2CBB9C2B2518E200098141 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */; };
 		8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53632B20468800FE5493 /* AppDelegate.swift */; };
 		8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53652B20468800FE5493 /* SceneDelegate.swift */; };
 		8FBF53682B20468800FE5493 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53672B20468800FE5493 /* ConversationsViewController.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		8F2CBB992B22FCA600098141 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		8FBF53602B20468800FE5493 /* MessengerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBF53632B20468800FE5493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FBF53652B20468800FE5493 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				8FBF536C2B20468900FE5493 /* Assets.xcassets */,
 				8FBF537C2B20470200FE5493 /* Storyboards */,
+				8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				8FBF53862B20481C00FE5493 /* VideoPlayerViewController.swift in Sources */,
 				8FBF53882B20483B00FE5493 /* NewConversationViewController.swift in Sources */,
 				8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */,
+				8F2CBB9C2B2518E200098141 /* ConversationTableViewCell.swift in Sources */,
 				8FBF53CB2B22A04D00FE5493 /* ChatViewController.swift in Sources */,
 				8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */,
 				8F2CBB9A2B22FCA600098141 /* StorageManager.swift in Sources */,

@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
             return nil
         }
         
-        let safeEmail = DatabaseManager.stafeEmail(emailAddress: email)
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         let fileName = safeEmail + "_profile_picture.png"
         
         let path = "images/" + fileName
@@ -54,6 +54,7 @@ class ProfileViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.width / 2
         headerView.addSubview(imageView)
+        
         StorageManager.shared.downoadUrl(for: path, completion: { [weak self] result in
             switch result {
             case .success(let url):

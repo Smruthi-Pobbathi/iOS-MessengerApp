@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GIDSignIn.sharedInstance.restorePreviousSignIn(completion: { user, error in
             if  error != nil || user == nil {
-                print("Failed to sugn in with google: \(String(describing: error))")
+                print("Failed to sign in with google: \(String(describing: error))")
             } else {
                 guard let userDetails = user,
                       let idToken = user?.idToken?.tokenString,
@@ -73,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 else { return }
                 
                 UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                
                 print("Did sign in with google: \(userDetails)")
                 
                 DatabaseManager.shared.userExists(with: email, completion: { exists in
