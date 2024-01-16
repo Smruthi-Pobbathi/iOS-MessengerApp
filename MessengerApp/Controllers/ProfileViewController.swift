@@ -16,6 +16,13 @@ class ProfileViewController: UIViewController {
     
     let data = ["Log out"]
     
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 21, weight: .semibold)
+        return label
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self,
@@ -27,7 +34,8 @@ class ProfileViewController: UIViewController {
     
     func createTableHeader() -> UIView? {
         
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String,
+              let name = UserDefaults.standard.value(forKey: "name") as? String else {
             return nil
         }
         
@@ -39,7 +47,7 @@ class ProfileViewController: UIViewController {
         let headerView = UIView(frame: CGRect(x: 0,
                                         y: 0,
                                         width: self.view.width,
-                                        height: 300))
+                                        height: 400))
         
         headerView.backgroundColor = .link
         
@@ -53,7 +61,14 @@ class ProfileViewController: UIViewController {
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.width / 2
+        
+        userNameLabel.frame = CGRect(x: imageView.center.x - 40,
+                                     y: imageView.bottom + 2,
+                                     width: 100,
+                                     height: 50)
+        userNameLabel.text = name
         headerView.addSubview(imageView)
+        headerView.addSubview(userNameLabel)
         
         StorageManager.shared.downoadUrl(for: path, completion: { [weak self] result in
             switch result {

@@ -11,6 +11,7 @@
 		8F2CBB982B22FB3A00098141 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2CBB972B22FB3A00098141 /* FirebaseStorage */; };
 		8F2CBB9A2B22FCA600098141 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB992B22FCA600098141 /* StorageManager.swift */; };
 		8F2CBB9C2B2518E200098141 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */; };
+		8FA81FCD2B570E6500420B3A /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA81FCC2B570E6500420B3A /* NewConversationCell.swift */; };
 		8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53632B20468800FE5493 /* AppDelegate.swift */; };
 		8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53652B20468800FE5493 /* SceneDelegate.swift */; };
 		8FBF53682B20468800FE5493 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53672B20468800FE5493 /* ConversationsViewController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		8F2CBB992B22FCA600098141 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		8FA81FCC2B570E6500420B3A /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		8FBF53602B20468800FE5493 /* MessengerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBF53632B20468800FE5493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FBF53652B20468800FE5493 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8FBF536C2B20468900FE5493 /* Assets.xcassets */,
 				8FBF537C2B20470200FE5493 /* Storyboards */,
 				8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */,
+				8FA81FCC2B570E6500420B3A /* NewConversationCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FBF53822B2047F700FE5493 /* ProfileViewController.swift in Sources */,
+				8FA81FCD2B570E6500420B3A /* NewConversationCell.swift in Sources */,
 				8FBF539D2B20FCC400FE5493 /* DatabaseManager.swift in Sources */,
 				8FBF537E2B2047D800FE5493 /* LoginViewController.swift in Sources */,
 				8FBF53802B2047E500FE5493 /* RegisterViewController.swift in Sources */,
@@ -494,6 +498,9 @@
 				DEVELOPMENT_TEAM = 32Y53TG6R8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessengerApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow access to send audio and video messages";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -524,6 +531,9 @@
 				DEVELOPMENT_TEAM = 32Y53TG6R8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessengerApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow access to send audio and video messages";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
