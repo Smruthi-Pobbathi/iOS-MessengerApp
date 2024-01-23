@@ -9,6 +9,7 @@ import Foundation
 import FirebaseDatabase
 import MessageKit
 import UIKit
+import CoreLocation
 
 public enum DatabaseError: Error {
     case failedToFetch
@@ -461,6 +462,17 @@ extension DatabaseManager {
                     
                     kind = .video(media)
                     
+                } else if type == "location" {
+                    let locationComponenets = content.components(separatedBy: ",")
+                    
+                    guard let longitude = Double(locationComponenets[0]),
+                          let latitude = Double(locationComponenets[1]) else {
+                        return nil
+                    }
+                    print("rendering location long = \(longitude), lat = \(latitude)")
+                    let location = Location(location: CLLocation(latitude: latitude, longitude: longitude), size: CGSize(width: 300, height: 300))
+                    kind = .location(location)
+                    
                 } else {
                     kind = .text(content)
                 }
@@ -523,7 +535,11 @@ extension DatabaseManager {
                     message = targetUrlString
                 }
                 break
-            case .attributedText(_), .location(_), .emoji(_), .audio(_),  .contact(_), .linkPreview(_), .custom(_):
+            case .location(let locationData):
+                let location = locationData.location
+                message = "\(location.coordinate.longitude),\(location.coordinate.latitude)"
+                break
+            case .attributedText(_), .emoji(_), .audio(_),  .contact(_), .linkPreview(_), .custom(_):
                 break
             }
             

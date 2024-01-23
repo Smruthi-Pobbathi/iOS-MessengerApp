@@ -11,6 +11,7 @@
 		8F2CBB982B22FB3A00098141 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2CBB972B22FB3A00098141 /* FirebaseStorage */; };
 		8F2CBB9A2B22FCA600098141 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB992B22FCA600098141 /* StorageManager.swift */; };
 		8F2CBB9C2B2518E200098141 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */; };
+		8F3CD92E2B605BDC002CC086 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CD92D2B605BDC002CC086 /* LocationPickerViewController.swift */; };
 		8FA81FCD2B570E6500420B3A /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA81FCC2B570E6500420B3A /* NewConversationCell.swift */; };
 		8FBF53642B20468800FE5493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53632B20468800FE5493 /* AppDelegate.swift */; };
 		8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF53652B20468800FE5493 /* SceneDelegate.swift */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		8F2CBB992B22FCA600098141 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		8F2CBB9B2B2518E200098141 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		8F3CD92D2B605BDC002CC086 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		8FA81FCC2B570E6500420B3A /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		8FBF53602B20468800FE5493 /* MessengerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBF53632B20468800FE5493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				8FBF53852B20481C00FE5493 /* VideoPlayerViewController.swift */,
 				8FBF53872B20483B00FE5493 /* NewConversationViewController.swift */,
 				8FBF53CA2B22A04D00FE5493 /* ChatViewController.swift */,
+				8F3CD92D2B605BDC002CC086 /* LocationPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				8FBF53CB2B22A04D00FE5493 /* ChatViewController.swift in Sources */,
 				8FBF53662B20468800FE5493 /* SceneDelegate.swift in Sources */,
 				8F2CBB9A2B22FCA600098141 /* StorageManager.swift in Sources */,
+				8F3CD92E2B605BDC002CC086 /* LocationPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
