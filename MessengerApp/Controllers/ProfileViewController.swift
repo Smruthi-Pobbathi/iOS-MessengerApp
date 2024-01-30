@@ -9,24 +9,67 @@ import UIKit
 import FirebaseAuth
 import FacebookLogin
 import GoogleSignIn
+import SDWebImage
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    let data = ["Log out"]
-    
-    private let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 21, weight: .semibold)
-        return label
-    }()
+    var data = [ProfileViewModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: "cell")
+        data.append(ProfileViewModel(profileViewModelType: .info,
+                                     title: "Name: \(UserDefaults.standard.value(forKey: "name") as? String ?? "No Name")",
+                                     handler: nil))
+        data.append(ProfileViewModel(profileViewModelType: .info,
+                                     title: "Email: \(UserDefaults.standard.value(forKey: "email") as? String ?? "No Email")",
+                                     handler: nil))
+        data.append(ProfileViewModel(profileViewModelType: .logout, title: "Log Out", handler: {[weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            let actionSheet = UIAlertController(title: "",
+                                          message: "",
+                                          preferredStyle: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Log out",
+                                           style: .destructive,
+                                                 handler: { [weak self] _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                UserDefaults.standard.set(nil, forKey: "email")
+                UserDefaults.standard.set(nil, forKey: "name")
+                
+                // log out facebook
+                FacebookLogin.LoginManager().logOut()
+                
+                // log out of google
+                GIDSignIn.sharedInstance.signOut()
+                
+                do {
+                    try FirebaseAuth.Auth.auth().signOut()
+                    
+                    if FirebaseAuth.Auth.auth().currentUser == nil {
+                        let vc = LoginViewController()
+                        let nav = UINavigationController(rootViewController: vc)
+                        nav.modalPresentationStyle = .fullScreen
+                        strongSelf.present(nav, animated: true)
+                    }
+                } catch {
+                    print("Failed to logout")
+                }
+                
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            strongSelf.present(actionSheet, animated: true)
+        }))
+        
+        tableView.register(ProfileTableViewCell.self,
+                           forCellReuseIdentifier: "ProfileTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeader()
@@ -34,8 +77,7 @@ class ProfileViewController: UIViewController {
     
     func createTableHeader() -> UIView? {
         
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String,
-              let name = UserDefaults.standard.value(forKey: "name") as? String else {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return nil
         }
         
@@ -46,8 +88,8 @@ class ProfileViewController: UIViewController {
         
         let headerView = UIView(frame: CGRect(x: 0,
                                         y: 0,
-                                        width: self.view.width,
-                                        height: 400))
+                                        width: view.width,
+                                        height: 300))
         
         headerView.backgroundColor = .link
         
@@ -62,40 +104,18 @@ class ProfileViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.width / 2
         
-        userNameLabel.frame = CGRect(x: imageView.center.x - 40,
-                                     y: imageView.bottom + 2,
-                                     width: 100,
-                                     height: 50)
-        userNameLabel.text = name
         headerView.addSubview(imageView)
-        headerView.addSubview(userNameLabel)
         
-        StorageManager.shared.downoadUrl(for: path, completion: { [weak self] result in
+        StorageManager.shared.downoadUrl(for: path, completion: { result in
             switch result {
             case .success(let url):
-                self?.downloadImage(imageView: imageView, url: url)
+                imageView.sd_setImage(with: url)
             case .failure(let error):
                 print("failed to get download url: \(error)")
             }
         })
         return headerView
     }
-    
-    
-    func downloadImage(imageView: UIImageView, url: URL) {
-        URLSession.shared.dataTask(with: url, completionHandler: { data,
-            _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                let image = UIImage(data: data)
-                imageView.image = image
-            }
-        }).resume()
-    }
-
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -104,50 +124,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
-        cell.textLabel?.textAlignment = .center
-        cell.textLabel?.textColor = .red
+        let viewModel = data[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
+        cell.setUp(with: viewModel)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let actionSheet = UIAlertController(title: "",
-                                      message: "",
-                                      preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Log out",
-                                       style: .destructive,
-                                             handler: { [weak self] _ in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            // log out facebook
-            FacebookLogin.LoginManager().logOut()
-            
-            // log out of google
-            GIDSignIn.sharedInstance.signOut()
-            
-            do {
-                try FirebaseAuth.Auth.auth().signOut()
-                
-                if FirebaseAuth.Auth.auth().currentUser == nil {
-                    let vc = LoginViewController()
-                    let nav = UINavigationController(rootViewController: vc)
-                    nav.modalPresentationStyle = .fullScreen
-                    strongSelf.present(nav, animated: true)
-                }
-            } catch {
-                print("Failed to logout")
-            }
-            
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(actionSheet, animated: true)
-
+        data[indexPath.row].handler?()
     }
-    
 }
