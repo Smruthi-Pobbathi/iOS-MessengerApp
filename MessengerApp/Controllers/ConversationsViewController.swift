@@ -9,21 +9,8 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-struct Conversation {
-    let id: String
-    let name: String
-    let otherUserEmail: String
-    let latestMessage: LatestMessage
-}
-
-struct LatestMessage {
-    let date: String
-    let text: String
-    let is_read: Bool
-}
-
 /// Controller that shows list of conversations
-class ConversationsViewController: UIViewController {
+final class ConversationsViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
     
@@ -53,7 +40,6 @@ class ConversationsViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         setUpTableView()
-        fetchConversations()
         startListeningForConversations()
         
         loginObserver = NotificationCenter.default.addObserver(
@@ -87,14 +73,20 @@ class ConversationsViewController: UIViewController {
             case .success(let conversations):
                 print("successfully get conversations model")
                 guard !conversations.isEmpty else {
+                    self?.tableView.isHidden = true
+                    self?.noConversationsLabel.isHidden = false
                     return
                 }
+                self?.tableView.isHidden = false
+                self?.noConversationsLabel.isHidden = true
                 self?.conversations = conversations
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
                 
             case .failure(let error):
+                self?.tableView.isHidden = true
+                self?.noConversationsLabel.isHidden = false
                 print("Failed to get convos: \(error)")
             }
             
@@ -113,10 +105,16 @@ class ConversationsViewController: UIViewController {
     
     func configureUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didTapComposeButton))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(crashButtonTapped))
         view.addSubview(tableView)
         view.addSubview(noConversationsLabel)
     }
     
+    @objc func crashButtonTapped(_ sender: AnyObject) {
+          let numbers = [0]
+          let _ = numbers[1]
+      }
+
     private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -124,6 +122,7 @@ class ConversationsViewController: UIViewController {
     
     func configureLayouts() {
         tableView.frame = view.bounds
+        noConversationsLabel.frame = CGRect(x: 10, y: (view.height - 100) / 2, width: view.width - 20, height: 100)
     }
     
     private func validateAuth() {
@@ -133,11 +132,6 @@ class ConversationsViewController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: false)
         }
-    }
-    
-    private func fetchConversations() {
-        // fetch conversations from firebase
-        tableView.isHidden = false
     }
     
     @objc func didTapComposeButton() {
@@ -239,11 +233,14 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
             // begin delete
             let conversationId = conversations[indexPath.row].id
             tableView.beginUpdates()
+            self.conversations.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
             
-            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { [weak self] success in
-                if success {
-                    self?.conversations.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .left)
+            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { success in
+                if !success {
+                    // Add model and row back and show error
+                    
+                    print("Failed to delete conversation")
                 }
             })
             tableView.endUpdates()

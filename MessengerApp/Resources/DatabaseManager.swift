@@ -19,7 +19,7 @@ public enum DatabaseError: Error {
 final class DatabaseManager {
     
     /// Shared instance of class
-    static let shared = DatabaseManager()
+    public static let shared = DatabaseManager()
     
     private let database = Database.database().reference()
     
@@ -32,8 +32,9 @@ final class DatabaseManager {
 
 extension DatabaseManager {
     
+    /// Returns dictionary node for child path
     public func getDataFor(path: String, completion: @escaping (Result<Any, Error>) -> Void) {
-        self.database.child("\(path)").observeSingleEvent(of: .value, with: { snapshot in
+        database.child("\(path)").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value else {
                 completion(.failure(DatabaseError.failedToFetch))
                 return
@@ -47,8 +48,11 @@ extension DatabaseManager {
 
 extension DatabaseManager {
     
+    /// Checks if user exists for a given email
+    /// Parameters
+    ///  - `email`:           Target email to be checked
+    ///  - `completion`:   Async closure to return with result
     public func userExists(with email: String, completion: @escaping((Bool) -> Void)) {
-        
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         
         database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
@@ -56,7 +60,6 @@ extension DatabaseManager {
                 completion(false)
                 return
             }
-            
             completion(true)
         })
     }
@@ -68,7 +71,7 @@ extension DatabaseManager {
         database.child(user.safeEmail).setValue([
             "first_name": user.firstName,
             "last_name": user.lastName
-        ], withCompletionBlock: { error, _ in
+        ], withCompletionBlock: { [weak self] error, _ in 
             guard error == nil else {
                 print("failed to write to database")
                 completion(false)
@@ -90,7 +93,7 @@ extension DatabaseManager {
              ]
              */
             // add it to our array of users. check if coolection exists or else create
-            self.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
+            self?.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
                 if var usersCollection = snapshot.value as? [[String : String]] {
                     // append to user dictionary
                     let newElement = [
@@ -99,7 +102,7 @@ extension DatabaseManager {
                     ]
                     
                     usersCollection.append(newElement)
-                    self.database.child("users").setValue(usersCollection, withCompletionBlock: { error, _ in
+                    self?.database.child("users").setValue(usersCollection, withCompletionBlock: { error, _ in
                         guard error == nil else {
                             completion(false)
                             return
@@ -115,7 +118,7 @@ extension DatabaseManager {
                             "email": user.safeEmail
                         ]
                     ]
-                    self.database.child("users").setValue(newCollection, withCompletionBlock: { error, _ in
+                    self?.database.child("users").setValue(newCollection, withCompletionBlock: { error, _ in
                         guard error == nil else {
                             completion(false)
                             return
@@ -127,7 +130,7 @@ extension DatabaseManager {
         })
     }
     
-    /// gets all users from database
+    /// Gets all users from database
     public func getAllUsers(completion: @escaping (Result<[[String : String]], Error>) -> Void) {
         
         database.child("users").observeSingleEvent(of: .value, with: { snapshot in
@@ -141,8 +144,14 @@ extension DatabaseManager {
     
     public enum DatabaseError: Error {
         case failedToFetch
+        
+        public var localizedDescription: String {
+            switch self {
+            case .failedToFetch:
+                return "This means blah failed"
+            }
+        }
     }
-
 }
 
 // MARK: - Sending messages / conversations

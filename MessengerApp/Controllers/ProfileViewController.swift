@@ -11,16 +11,7 @@ import FacebookLogin
 import GoogleSignIn
 import SDWebImage
 
-enum ProfileViewModelType {
-    case info, logout
-}
-struct ProfileViewModel {
-    let profileViewModelType: ProfileViewModelType
-    let title: String
-    let handler: (() -> Void)?
-    
-}
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
@@ -49,6 +40,9 @@ class ProfileViewController: UIViewController {
                     return
                 }
                 
+                UserDefaults.standard.set(nil, forKey: "email")
+                UserDefaults.standard.set(nil, forKey: "name")
+                
                 // log out facebook
                 FacebookLogin.LoginManager().logOut()
                 
@@ -74,8 +68,8 @@ class ProfileViewController: UIViewController {
             strongSelf.present(actionSheet, animated: true)
         }))
         
-        tableView.register(ProfileTableViweCell.self,
-                           forCellReuseIdentifier: "ProfileTableViweCell")
+        tableView.register(ProfileTableViewCell.self,
+                           forCellReuseIdentifier: "ProfileTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeader()
@@ -94,7 +88,7 @@ class ProfileViewController: UIViewController {
         
         let headerView = UIView(frame: CGRect(x: 0,
                                         y: 0,
-                                        width: self.view.width,
+                                        width: view.width,
                                         height: 300))
         
         headerView.backgroundColor = .link
@@ -131,7 +125,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViweCell", for: indexPath) as! ProfileTableViweCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
         cell.setUp(with: viewModel)
         return cell
     }
@@ -139,22 +133,5 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         data[indexPath.row].handler?()
-    }
-}
-
-class ProfileTableViweCell: UITableViewCell {
-    
-    static let identifier = "ProfileTableViweCell"
-    
-    public func setUp(with viewModel: ProfileViewModel) {
-        self.textLabel?.text = viewModel.title
-        switch viewModel.profileViewModelType {
-        case .info:
-            self.textLabel?.textAlignment = .left
-            self.selectionStyle = .none
-        case .logout:
-            self.textLabel?.textColor = .red
-            self.textLabel?.textAlignment = .center
-        }
     }
 }

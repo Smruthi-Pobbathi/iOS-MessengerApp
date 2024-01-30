@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
 
     private let spinner = JGProgressHUD(style: .dark)
 
@@ -230,6 +230,9 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 
+                UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                
                 let chatUser = ChatAppUser(firstName: firstName,
                                            lastName: lastName,
                                            emailAddress: email)
@@ -334,7 +337,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         
         picker.dismiss(animated: true)
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-        self.imageView.image = selectedImage
+        imageView.image = selectedImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

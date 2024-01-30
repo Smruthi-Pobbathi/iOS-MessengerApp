@@ -14,7 +14,7 @@ import FirebaseStorage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -26,15 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureGoogleSignIn()
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // open fb signin url
         ApplicationDelegate.shared.application(app,
-                                               open: url, 
+                                               open: url,
                                                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                                                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
@@ -53,11 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //open google signin url
         let handled: Bool = GIDSignIn.sharedInstance.handle(url)
         if handled {
-          return true
+            return true
         }
         return false
         
     }
+    
+}
+
+// MARK: - GIDSignIn method
+
+extension AppDelegate {
     
     func configureGoogleSignIn() {
         
